@@ -1,13 +1,23 @@
 import React from 'react';
-import Home from './pages/home'
-import './index.css';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+
 import theme from './theme';
+import Home from './pages/home'
+
+import './index.css';
+
+const Page404 = () => (<h1>404 Not Found</h1>)
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="*" component={Page404} />
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
