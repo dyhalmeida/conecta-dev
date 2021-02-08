@@ -6,8 +6,6 @@ import theme from './theme';
 import Home from './pages/home';
 import Signin from './pages/signin';
 
-import './index.css';
-
 const Page404 = () => (<h1>404 Not Found</h1>)
 
 function App() {
