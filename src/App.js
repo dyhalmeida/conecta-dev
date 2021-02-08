@@ -3,7 +3,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import theme from './theme';
-import Home from './pages/home'
+import Home from './pages/home';
+import Signin from './pages/signin';
 
 import './index.css';
 
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" component={Home} exact />
+          <Route path="/signin" component={Signin} />
           <Route path="*" component={Page404} />
         </Switch>
       </BrowserRouter>
