@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import theme from './theme';
 import Home from './pages/home';
 import Signin from './pages/signin';
+import './mock';
 
 const Page404 = () => (<h1>404 Not Found</h1>)
 

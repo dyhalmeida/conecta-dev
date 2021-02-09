@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlined from '@material-ui/icons/LockOutlined';
+import axios from '../../utils/axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,6 +47,11 @@ const Copyright = () => (
 export default function Signin() {
 
     const styles = useStyles();
+
+    const handleSignin = () => {
+        axios.post('/api/home/login')
+        .then(response => console.log(response));
+    }
 
     return (
         <Grid className={styles.root} container>
@@ -89,6 +95,7 @@ export default function Signin() {
                             autoComplete="current-password"
                         />
                         <Button fullWidth
+                            onClick={handleSignin}
                             variant="contained"
                             color="primary"
                             className={styles.button}>
