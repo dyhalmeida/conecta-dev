@@ -9,6 +9,8 @@ import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlined from '@material-ui/icons/LockOutlined';
 import axios from '../../utils/axios';
+import authService from '../../services/authService';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,11 +48,16 @@ const Copyright = () => (
 
 export default function Signin() {
 
+    const history = useHistory();
     const styles = useStyles();
 
-    const handleSignin = () => {
-        axios.post('/api/home/login')
-        .then(response => console.log(response));
+    const handleSignin = async () => {
+        try {
+            await authService.sigin('dyhalmeida@gmail.com', '102010');
+            history.push('/');
+        } catch (error) {
+            console.log(error.response);
+        }
     }
 
     return (
