@@ -1,8 +1,8 @@
 import React from 'react';
+
 import Header from '../components/Header';
 import Feed from '../components/Feed';
 import NavBar from '../components/NavBar';
-
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 

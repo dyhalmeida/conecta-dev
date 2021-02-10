@@ -10,6 +10,7 @@ mock.onPost('/api/home/login').reply((config) => {
     const user = {
         id: 1,
         name: 'Diego Almeida',
+        avatar: '/images/avatars/avatar_1.jpeg',
         username: 'dyhalmeida',
         email: 'dyhalmeida@gmail.com'
     }

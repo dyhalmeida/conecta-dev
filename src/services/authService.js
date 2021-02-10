@@ -1,6 +1,5 @@
 import axios from '../utils/axios';
 
-
 const authService = () => ({
 
     sigin(email, password) {

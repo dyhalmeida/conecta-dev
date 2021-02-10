@@ -1,4 +1,8 @@
 import React from 'react'
+
+import { useSelector } from 'react-redux';
+
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -31,6 +35,7 @@ const useStyles = makeStyles({
 
 export default function Header(props) {
     const style = useStyles();
+    const user = useSelector(({ user }) => user)
     return (
         <AppBar position='fixed' color='inherit' className={style.appBar}>
             <Toolbar>
@@ -44,7 +49,7 @@ export default function Header(props) {
                     <SvgIcon className={style.bell}>
                         <Bell></Bell>
                     </SvgIcon>
-                    <Avatar alt="Diego Almeida" src="/" />
+                    <Avatar alt="Diego Almeida" src={user && user.avatar} />
                 </div>
 
                 {/* <div className="">

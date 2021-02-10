@@ -9,8 +9,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlined from '@material-ui/icons/LockOutlined';
-import authService from '../../services/authService';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,10 +55,11 @@ export default function Signin() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [errorMessage, setErrorMessage] = React.useState('');
+    const dispatch = useDispatch();
 
     const handleSignin = async () => {
         try {
-            await authService.sigin(email, password);
+            await dispatch(signIn(email, password));
             history.push('/');
         } catch (error) {
             setErrorMessage(error.response.data.message);
