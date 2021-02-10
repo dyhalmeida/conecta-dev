@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import GuestRoute from './routes/GuestRoute';
 
 import theme from './theme';
 import Home from './pages/home';
@@ -15,7 +16,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/signin" component={Signin} />
+          <GuestRoute path="/signin" component={Signin} />
+          {/* <Route path="/signin" component={Signin} /> */}
           <Route path="*" component={Page404} />
         </Switch>
       </BrowserRouter>
