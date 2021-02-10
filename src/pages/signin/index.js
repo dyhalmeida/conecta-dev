@@ -5,10 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlined from '@material-ui/icons/LockOutlined';
-import axios from '../../utils/axios';
 import authService from '../../services/authService';
 import { useHistory } from 'react-router-dom';
 
@@ -51,12 +51,16 @@ export default function Signin() {
     const history = useHistory();
     const styles = useStyles();
 
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [errorMessage, setErrorMessage] = React.useState('');
+
     const handleSignin = async () => {
         try {
-            await authService.sigin('dyhalmeida@gmail.com', '102010');
+            await authService.sigin(email, password);
             history.push('/');
         } catch (error) {
-            console.log(error.response);
+            setErrorMessage(error.response.data.message);
         }
     }
 
@@ -89,6 +93,8 @@ export default function Signin() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={email}
+                            onChange={({ target }) => setEmail(target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -100,14 +106,20 @@ export default function Signin() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password}
+                            onChange={({ target }) => setPassword(target.value)}
                         />
                         <Button fullWidth
                             onClick={handleSignin}
                             variant="contained"
                             color="primary"
+                            disabled={!email || !password}
                             className={styles.button}>
                             Entrar
                         </Button>
+                        {
+                            errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>
+                        }
                         <Grid container>
                             <Grid item>
                                 <Link>Esqueceu a sua senha?</Link>
