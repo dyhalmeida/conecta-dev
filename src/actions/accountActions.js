@@ -1,8 +1,9 @@
 import authService from '../services/authService';
 
 export const LOGIN_SUCCESS = '@ACCOUNT/LOGIN_SUCCESS';
+export const SILENT_LOGIN = '@ACCOUNT/SILENT_LOGIN';
 
-const signIn = (email, password) => {
+export const signIn = (email, password) => {
     return async (dispatch) => {
         const user = await authService.sigin(email, password);
         dispatch({
@@ -14,4 +15,14 @@ const signIn = (email, password) => {
     }
 }
 
-export default signIn;
+export const setUserData = () => {
+    return async (dispatch) => {
+        const user = await authService.siginWithToken();
+        dispatch({
+            type: SILENT_LOGIN,
+            payload: {
+                user,
+            }
+        });
+    }
+}

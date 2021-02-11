@@ -7,7 +7,7 @@ const authService = () => ({
             axios.post('/api/home/login', { email, password })
             .then((response) => {
                 if (response.data.user) {
-                    this.setUser(response.data.user);
+                    this.setToken('JWT');
                     resolve(response.data.user)
                 } else {
                     this.setUser(null);
@@ -18,17 +18,31 @@ const authService = () => ({
         })
     },
 
-    setUser(user) {
-        localStorage.setItem("@conecta-dev:user", JSON.stringify(user));
+    siginWithToken() {
+        return new Promise((resolve, reject) => {
+            axios.post('/api/home/me')
+            .then((response) => {
+                if (response.data.user) {
+                    resolve(response.data.user)
+                } else {
+                    this.setUser(null);
+                    reject(response.data.error)
+                }
+            })
+            .catch(error => reject(error))
+        })
     },
 
-    getUser() {
-        const user = localStorage.getItem("@conecta-dev:user");
-        return user;
+    setToken(token) {
+        localStorage.setItem("@conecta-dev:token", token);
+    },
+
+    getToken() {
+        return localStorage.getItem("@conecta-dev:token");
     },
 
     isAuthenticated() {
-        return !!this.getUser();
+        return !!this.getToken();
     }
     
 })

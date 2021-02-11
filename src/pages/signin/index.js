@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import LockOutlined from '@material-ui/icons/LockOutlined';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import signIn from '../../actions/accountActions';
+import { signIn } from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
