@@ -1,16 +1,18 @@
-const INITIAL_STATE = {
-    user: {}
-}
-const accountReducer = (state = INITIAL_STATE, action) => {
+import { LOGIN_SUCCESS } from '../actions/accountActions';
 
-    if (action.type === 'LOGIN_SUCCESS') {
-        return {
-            ...state,
-            user: action.payload.user
-        }
+const INITIAL_STATE = {
+    user: null
+}
+const states = {};
+
+const accountReducer = (state = INITIAL_STATE, action) => {
+    
+    states[LOGIN_SUCCESS] = {
+        ...state,
+        user: action?.payload?.user || {...state.user} 
     }
 
-    return state;
+    return states[action.type] || state;
 }
 
 export default accountReducer;

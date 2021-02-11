@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 
 export default function Header(props) {
     const style = useStyles();
-    const user = useSelector(({ user }) => user)
+    const user = useSelector(({ account }) => account.user)
     return (
         <AppBar position='fixed' color='inherit' className={style.appBar}>
             <Toolbar>
